@@ -1,0 +1,30 @@
+# Aegis-Code — AST-driven regression & adversarial bug fixer
+# Python 3.11+
+
+# CLI
+typer[all]>=0.9.0
+rich>=13.7.0
+
+# AST Parsing
+libcst>=1.1.0
+
+# Orchestration
+langgraph>=0.2.0
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-openai>=0.1.0
+langchain-google-genai>=1.0.0
+
+# Sandbox
+docker>=7.0.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+pytest-timeout>=2.2.0
+
+# State Storage
+# (sqlite3 is part of the Python standard library)
+
+# Utilities
+pydantic>=2.5.0
