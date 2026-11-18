@@ -82,6 +82,7 @@ def get_llm(*, temperature: float = 0.2, model: str | None = None):
         model=model or env_model or "gemini-3.8-flash",
         temperature=temperature,
         google_api_key=api_key,
+        max_retries=3,
     )
 
 
