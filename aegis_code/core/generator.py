@@ -77,8 +77,23 @@ def _build_module_context(module: ParsedModule) -> str:
     return json.dumps(context, indent=2, default=str)
 
 
-def _extract_code_block(response_text: str) -> str:
+def _extract_code_block(response_text: Any) -> str:
     """Pull the Python code from the LLM response."""
+    if isinstance(response_text, list):
+        parts = []
+        for item in response_text:
+            if isinstance(item, dict) and "text" in item:
+                parts.append(item["text"])
+            elif isinstance(item, str):
+                parts.append(item)
+            elif hasattr(item, "text"):
+                parts.append(getattr(item, "text"))
+            else:
+                parts.append(str(item))
+        response_text = "\n".join(parts)
+    elif not isinstance(response_text, str):
+        response_text = str(response_text)
+
     # Try fenced code block first
     pattern = re.compile(r"```python\s*\n(.*?)```", re.DOTALL)
     match = pattern.search(response_text)

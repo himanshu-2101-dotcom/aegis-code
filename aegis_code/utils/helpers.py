@@ -79,7 +79,7 @@ def get_llm(*, temperature: float = 0.2, model: str | None = None):
     from langchain_google_genai import ChatGoogleGenerativeAI
 
     return ChatGoogleGenerativeAI(
-        model=model or env_model or "gemini-3.8-flash",
+        model=model or env_model or "gemini-flash-lite-latest",
         temperature=temperature,
         google_api_key=api_key,
         max_retries=3,
