@@ -66,8 +66,10 @@ def _check_api_key() -> None:
 
     provider = os.getenv("AEGIS_LLM_PROVIDER", "auto-detect")
     active_key = "OPENAI_API_KEY" if openai_key else "GOOGLE_API_KEY"
+    default_model = "gpt-4o" if (provider == "openai" or (openai_key and not google_key)) else "gemini-3.8-flash"
+    active_model = os.getenv("AEGIS_MODEL") or default_model
     console.print(
-        f"  LLM provider: [green]{provider}[/]  (key: {active_key})"
+        f"  LLM provider: [green]{provider}[/]  (model: [bold cyan]{active_model}[/], key: {active_key})"
     )
 
 
