@@ -7,7 +7,7 @@ name = "aegis-code"
 version = "0.1.0"
 description = "AST-driven regression & adversarial bug fixer"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.9"
 license = {text = "MIT"}
 
 dependencies = [
