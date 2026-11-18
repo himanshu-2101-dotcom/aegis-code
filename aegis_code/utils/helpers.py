@@ -64,12 +64,13 @@ def resolve_llm_provider() -> tuple[str, str]:
 def get_llm(*, temperature: float = 0.2, model: str | None = None):
     """Return a LangChain chat model for the resolved provider."""
     provider, api_key = resolve_llm_provider()
+    env_model = os.getenv("AEGIS_MODEL")
 
     if provider == "openai":
         from langchain_openai import ChatOpenAI
 
         return ChatOpenAI(
-            model=model or "gpt-4o",
+            model=model or env_model or "gpt-4o",
             temperature=temperature,
             api_key=api_key,
         )
@@ -78,7 +79,7 @@ def get_llm(*, temperature: float = 0.2, model: str | None = None):
     from langchain_google_genai import ChatGoogleGenerativeAI
 
     return ChatGoogleGenerativeAI(
-        model=model or "gemini-2.0-flash",
+        model=model or env_model or "gemini-3.8-flash",
         temperature=temperature,
         google_api_key=api_key,
     )

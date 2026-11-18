@@ -2,7 +2,7 @@
 # Python 3.11+
 
 # CLI
-typer[all]>=0.9.0
+typer>=0.9.0
 rich>=13.7.0
 
 # AST Parsing
